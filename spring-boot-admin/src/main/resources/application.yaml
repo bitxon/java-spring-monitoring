@@ -1,2 +1,12 @@
-server:
-  port: 9999
+spring:
+  profiles:
+    default: local
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

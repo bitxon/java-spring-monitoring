@@ -2,12 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: price-service
+  labels:
+    app: order
+    type: spring-boot
 spec:
   type: ClusterIP
   selector:
     app: price
   ports:
-    - name: application
+    - name: http
       port: 8080
       targetPort: 8080
     - name: management
@@ -28,16 +31,19 @@ spec:
     metadata:
       labels:
         app: price
-        type: spring-boot
     spec:
       containers:
         - name: price-app
           image: bitxon/price-app
           ports:
             - containerPort: 8080
+              name: http
+              protocol: TCP
             - containerPort: 8081
+              name: management
+              protocol: TCP
           env:
-            - name: SERVER_PORT
-              value: "8080"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: "http://zipkin-service.default.svc.cluster.local:9411/api/v2/spans"

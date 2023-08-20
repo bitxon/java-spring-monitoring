@@ -2,12 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: order-service
+  labels:
+    app: order
+    type: spring-boot
 spec:
   type: ClusterIP
   selector:
     app: order
   ports:
-    - name: application
+    - name: http
       port: 8080
       targetPort: 8080
     - name: management
@@ -28,19 +31,26 @@ spec:
     metadata:
       labels:
         app: order
-        type: spring-boot
     spec:
       containers:
         - name: order-app
           image: bitxon/order-app
           ports:
             - containerPort: 8080
+              name: http
+              protocol: TCP
             - containerPort: 8081
+              name: management
+              protocol: TCP
           env:
-            - name: SERVER_PORT
-              value: "8080"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://db-service.default.svc.cluster.local:5432/postgres"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgres"
             - name: HTTP_PRICE_CLIENT_URL
               value: "http://price-service.default.svc.cluster.local:8080"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT

@@ -9,6 +9,8 @@ skaffold dev
 
 [Open Zipkin UI](http://localhost:9411)
 
+[Open Spring Admin UI](http://localhost:9999)
+
 
 ```shell
 curl --location 'http://localhost:8090/price/iphone'

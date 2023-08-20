@@ -12,9 +12,15 @@ build:
       context: order-service
       docker:
         dockerfile: Dockerfile
+    - image: bitxon/sba-app
+      context: spring-boot-admin
+      docker:
+        dockerfile: Dockerfile
 manifests:
   rawYaml:
+    - k8s/account.yaml
     - k8s/zipkin.yaml
+    - k8s/sba.yaml
     - k8s/db.yaml
     - k8s/price-application.yaml
     - k8s/order-application.yaml
@@ -31,3 +37,7 @@ portForward:
     resourceType: service
     port: 9411
     localPort: 9411
+  - resourceName: sba-service
+    resourceType: service
+    port: 8080
+    localPort: 9999
