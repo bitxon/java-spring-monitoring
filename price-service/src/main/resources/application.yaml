@@ -1,0 +1,19 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: price-service
+
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0 # Trace everything, but please use 0.1 for Prod
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans # Default value
+
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'

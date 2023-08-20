@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  flyway:
+    default-schema: postgres
+    fail-on-missing-locations: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0 # Trace everything, but please use 0.1 for Prod
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans # Default value
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+http:
+  price-client:
+    url: http://localhost:8090
+
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'

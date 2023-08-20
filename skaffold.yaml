@@ -1,0 +1,33 @@
+apiVersion: skaffold/v4beta2
+kind: Config
+metadata:
+  name: java-spring-monitoring
+build:
+  artifacts:
+    - image: bitxon/price-app
+      context: price-service
+      docker:
+        dockerfile: Dockerfile
+    - image: bitxon/order-app
+      context: order-service
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/zipkin.yaml
+    - k8s/db.yaml
+    - k8s/price-application.yaml
+    - k8s/order-application.yaml
+portForward:
+  - resourceName: price-service
+    resourceType: service
+    port: 8080
+    localPort: 8090
+  - resourceName: order-service
+    resourceType: service
+    port: 8080
+    localPort: 8080
+  - resourceName: zipkin-service
+    resourceType: service
+    port: 9411
+    localPort: 9411
