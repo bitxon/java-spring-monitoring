@@ -3,6 +3,8 @@ kind: Config
 metadata:
   name: java-spring-monitoring
 build:
+  local:
+    concurrency: 3
   artifacts:
     - image: bitxon/price-app
       context: price-service
