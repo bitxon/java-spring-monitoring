@@ -11,5 +11,5 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.kubernetes: TRACE
+    org.springframework.cloud.kubernetes: INFO # change to TRACE in case of problems
     de.codecentric.boot.admin.discovery.ApplicationDiscoveryListener: DEBUG
