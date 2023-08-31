@@ -13,13 +13,17 @@ skaffold dev
 
 
 ```shell
-curl --location 'http://localhost:8090/price/iphone'
+curl --location 'http://localhost:8090/price/iphone' \
+--header 'x-request-id: A8j24hu81b33' \
+--header 'x-application-id: Web'
 ```
 
 ```shell
 curl --location 'http://localhost:8080/order' \
 --request POST \
 --header 'Content-Type: application/json' \
+--header 'x-request-id: Ju439a8o1yr4' \
+--header 'x-application-id: Web' \
 --data '{
   "productIdentifier": "iphone",
   "productName": "N/A",

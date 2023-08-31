@@ -9,6 +9,10 @@ management:
     enabled: true
     sampling:
       probability: 1.0 # Trace everything, but please use 0.1 for Prod
+    baggage:
+      correlation:
+        fields: x-request-id, x-application-id
+      remote-fields: ${management.tracing.baggage.correlation.fields}
   endpoints:
     web:
       exposure:
@@ -19,4 +23,4 @@ management:
 
 logging:
   pattern:
-    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}, %X{x-request-id:-}, %X{x-application-id:-}]'
