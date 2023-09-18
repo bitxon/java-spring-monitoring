@@ -3,6 +3,7 @@ package bitxon.order.db;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tags;
 import io.micrometer.core.instrument.binder.db.MetricsDSLContext;
+import io.micrometer.observation.annotation.Observed;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import static org.jooq.impl.DSL.table;
 
 
 @Repository
+@Observed(name = "orderDao") // Requires Spring boot 3.2 to work out of the box
 public class OrderDao {
 
     private final MetricsDSLContext dslContext;
