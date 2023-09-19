@@ -1,15 +1,28 @@
 # Java Spring Monitoring
 
 ## Run
-```shell
-skaffold dev
-```
 
+### In Kubernetes (skaffold)
+1. Start cluster
+    - `minikube start`
+2. Run:
+   - `skaffold dev`
+
+### In Docker
+1. Start containers
+    - `docker-compose up -d`
+2. Run:
+    - `mvn -pl price-service -am spring-boot:run`
+    - `mvn -pl order-service -am spring-boot:run`
+    - `mvn -pl spring-boot-admin -am spring-boot:run`
+
+---
 ## Test
 
-[Open Zipkin UI](http://localhost:9411)
-
-[Open Spring Admin UI](http://localhost:9999)
+[Open - Zipkin](http://localhost:9411)\
+[Open - Spring Admin](http://localhost:9999)\
+[Open - Prometheus](http://localhost:9090)\
+[Open - Grafana](http://localhost:3000)
 
 
 ```shell
@@ -30,3 +43,8 @@ curl --location 'http://localhost:8080/order' \
   "quantity": 3
 }'
 ```
+
+---
+## Useful Links
+[Spring Boot Grafana Dashboards](https://grafana.com/grafana/dashboards/?search=spring+boot)\
+[Spring Boot 3 Dashboard file for Grafana](https://grafana.com/grafana/dashboards/19004-spring-boot-statistics/)

@@ -16,3 +16,30 @@ services:
     image: openzipkin/zipkin:latest
     ports:
       - "9411:9411"
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.47.0
+    user: root
+    volumes:
+      - ./docker/prometheus:/etc/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus-config.yaml
+      - --log.level=debug
+    ports:
+      - "9090:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:9.5.10
+    depends_on:
+      - prometheus
+    volumes:
+      - ./docker/grafana:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    ports:
+      - "3000:3000"
