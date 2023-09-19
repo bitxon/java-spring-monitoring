@@ -1,6 +1,7 @@
 version: '3.8'
 services:
-  db:
+  postgres:
+    container_name: postgres
     image: postgres:15-alpine
     restart: always
     environment:
@@ -8,9 +9,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - "5432:5432"
 
   zipkin:
+    container_name: zipkin
     image: openzipkin/zipkin:latest
     ports:
-      - 9411:9411
+      - "9411:9411"
