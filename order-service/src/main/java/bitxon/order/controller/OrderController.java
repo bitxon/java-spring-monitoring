@@ -2,6 +2,7 @@ package bitxon.order.controller;
 
 import bitxon.order.api.FinalPrice;
 import bitxon.order.api.Order;
+import bitxon.order.client.PriceFeignClient;
 import bitxon.order.client.PriceRestClient;
 import bitxon.order.client.PriceRestTemplate;
 import bitxon.order.client.PriceWebClient;
@@ -23,6 +24,7 @@ public class OrderController {
     private final PriceRestTemplate priceRestTemplate;
     private final PriceRestClient priceRestClient;
     private final PriceWebClient priceWebClient;
+    private final PriceFeignClient priceFeignClient;
     private final OrderDao orderDao;
 
     @PostMapping({"", "rest-template"})
@@ -59,6 +61,20 @@ public class OrderController {
 
         var identifier = order.productIdentifier();
         var amount = priceWebClient.getPrice(identifier).amount();
+
+        int totalAmount = amount * order.quantity();
+
+        orderDao.create(order.productIdentifier(), order.productName(), order.quantity(), totalAmount);
+
+        return new FinalPrice(totalAmount);
+    }
+
+    @PostMapping({"feign-client"})
+    public FinalPrice publishOrderWithFeignClient(@RequestBody Order order) {
+        LOG.info("Handling: POST /order withWebClient");
+
+        var identifier = order.productIdentifier();
+        var amount = priceFeignClient.getPrice(identifier).amount();
 
         int totalAmount = amount * order.quantity();
 
