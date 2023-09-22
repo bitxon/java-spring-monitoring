@@ -58,7 +58,7 @@ public class OrderController {
         LOG.info("Handling: POST /order withWebClient");
 
         var identifier = order.productIdentifier();
-        var amount = priceRestClient.getPrice(identifier).amount();
+        var amount = priceWebClient.getPrice(identifier).amount();
 
         int totalAmount = amount * order.quantity();
 
