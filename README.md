@@ -32,7 +32,7 @@ curl --location 'http://localhost:8090/price/iphone' \
 ```
 
 ```shell
-curl --location 'http://localhost:8080/order' \
+curl --location 'http://localhost:8080/order/rest-template' \
 --request POST \
 --header 'Content-Type: application/json' \
 --header 'x-request-id: Ju439a8o1yr4' \
