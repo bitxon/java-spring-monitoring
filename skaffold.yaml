@@ -20,7 +20,7 @@ build:
         dockerfile: Dockerfile
 manifests:
   rawYaml:
-    - k8s/account.yaml
+    - k8s/sba-rbac.yaml
     - k8s/zipkin.yaml
     - k8s/sba.yaml
     - k8s/db.yaml

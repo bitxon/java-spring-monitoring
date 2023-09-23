@@ -29,7 +29,7 @@ spec:
       labels:
         app: sba
     spec:
-      serviceAccountName: admin
+      serviceAccountName: sba-service-account
       containers:
         - name: sba-app
           image: bitxon/sba-app

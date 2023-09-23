@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: admin
+  name: sba-role
 rules:
   - apiGroups:
       - ""
@@ -19,18 +19,18 @@ rules:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: admin
+  name: sba-service-account
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: admin
+  name: sba-role-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: admin
+  name: sba-role
 subjects:
   - kind: ServiceAccount
-    name: admin
+    name: sba-service-account
     namespace: default
