@@ -37,8 +37,11 @@ services:
     depends_on:
       - prometheus
     volumes:
-      - ./docker/grafana:/etc/grafana/provisioning/datasources
+      - ./docker/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./docker/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./docker/grafana/data/dashboards:/var/lib/grafana/dashboards
     environment:
+      - GF_LOG_LEVEL=debug
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     ports:
