@@ -1,0 +1,22 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - name: Warm up the API
+      duration: 10
+      arrivalRate: 5
+      rampTo: 10
+    - name: Sustained peak load
+      duration: 20
+      rampTo: 100
+scenarios:
+  - name: post_order
+    flow:
+      - post:
+          url: "/order"
+          json:
+            productIdentifier: "iphone"
+            productName: "N/A"
+            quantity: 3
+          headers:
+            x-application-id: "Perf"
+            x-request-id: "Pe8Lpew84"

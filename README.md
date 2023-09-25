@@ -5,16 +5,20 @@
 ### In Kubernetes (skaffold)
 1. Start cluster
     - `minikube start`
-2. Run:
+2. Run apps:
    - `skaffold dev`
+3. Run load-test:
+   - `artillery run artillery-load-test.yml`
 
 ### In Docker
 1. Start containers
     - `docker-compose up -d`
-2. Run:
+2. Run apps:
     - `mvn -pl price-service -am spring-boot:run`
     - `mvn -pl order-service -am spring-boot:run`
     - `mvn -pl spring-boot-admin -am spring-boot:run`
+3. Run load-test:
+   - `artillery run artillery-load-test.yml`
 
 ---
 ## Test
