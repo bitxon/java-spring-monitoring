@@ -16,13 +16,16 @@ public class PriceClient {
     }
 
 
-    public int getPrice(String identifier) {
+    public int getPrice(String identifier, int delay) {
         var price = restTemplate.getForObject(
-            baseUrl + "/price/" + identifier,
+            "%s/price/%s?delay=%d".formatted(baseUrl, identifier, delay),
             Price.class
         );
         return price.amount();
+    }
 
+    public int getPrice(String identifier) {
+        return getPrice(identifier, 0);
     }
 
     private record Price(int amount) {}
