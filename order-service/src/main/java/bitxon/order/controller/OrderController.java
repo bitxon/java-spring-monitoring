@@ -15,11 +15,13 @@ public class OrderController {
 
     private final PriceClient priceClient;
     private final OrderDao orderDao;
+    private final AsyncService asyncService;
 
 
-    public OrderController(PriceClient priceClient, OrderDao orderDao) {
+    public OrderController(PriceClient priceClient, OrderDao orderDao, AsyncService asyncService) {
         this.priceClient = priceClient;
         this.orderDao = orderDao;
+        this.asyncService = asyncService;
     }
 
     @PostMapping
@@ -32,6 +34,8 @@ public class OrderController {
         int totalAmount = amount * order.quantity();
 
         orderDao.create(order.productIdentifier(), order.productName(), order.quantity(), totalAmount);
+
+        asyncService.asyncMethod();
 
         return new FinalPrice(totalAmount);
     }

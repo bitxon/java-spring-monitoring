@@ -684,6 +684,19 @@
       "type": "bargauge"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Async",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "Prometheus"
@@ -733,14 +746,10 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "s"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -748,7 +757,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 31
+        "y": 32
       },
       "id": 12,
       "options": {
@@ -770,81 +779,38 @@
             "uid": "Prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by(method)(orderDao_seconds_sum{application=\"$application\"}) / sum by(method)(orderDao_seconds_count{application=\"$application\"})",
-          "legendFormat": "__auto",
+          "expr": "executor_active_threads{application=\"$application\"}",
+          "legendFormat": "{{name}} - active",
           "range": true,
           "refId": "A"
-        }
-      ],
-      "title": "Database DAO method Avg Duration",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "Prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 31
-      },
-      "id": 10,
-      "options": {
-        "displayMode": "basic",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "9.5.10",
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "Prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by(method)(orderDao_seconds_sum{application=\"$application\"}) / sum by(method)(orderDao_seconds_count{application=\"$application\"})",
-          "legendFormat": "__auto",
+          "expr": "executor_pool_max_threads{application=\"$application\"}",
+          "hide": false,
+          "legendFormat": "{{name}} - max",
           "range": true,
-          "refId": "A"
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "Prometheus"
+          },
+          "editorMode": "code",
+          "expr": "executor_queued_tasks{application=\"$application\"}",
+          "hide": false,
+          "legendFormat": "{{name}} - queue",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "title": "Database DAO Method Avg Duration",
-      "type": "bargauge"
+      "title": "Async ThreadPool",
+      "type": "timeseries"
     }
   ],
   "refresh": "5s",
@@ -882,8 +848,19 @@
     "to": "now"
   },
   "timepicker": {
-    "refresh_intervals": ["2s","5s", "10s", "30s", "1m"],
-    "time_options": ["5m", "15m", "30m", "1h"]
+    "refresh_intervals": [
+      "2s",
+      "5s",
+      "10s",
+      "30s",
+      "1m"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "30m",
+      "1h"
+    ]
   },
   "timezone": "",
   "title": "Spring Boot 3 Throughput",
