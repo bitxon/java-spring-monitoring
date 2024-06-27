@@ -8,6 +8,8 @@ config:
     - name: Sustained peak load
       duration: 20
       rampTo: 100
+  plugins:
+    fake-data: {}
 scenarios:
   - name: post_order
     flow:
@@ -19,4 +21,4 @@ scenarios:
             quantity: 3
           headers:
             x-application-id: "Perf"
-            x-request-id: "Pe8Lpew84"
+            x-request-id: "{{ $randSequence() }}"
