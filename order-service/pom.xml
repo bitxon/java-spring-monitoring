@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0-M2</version>
+        <version>3.2.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -16,14 +16,7 @@
     <properties>
         <java.version>17</java.version>
         <!-- Libraries -->
-        <jooq.version>3.18.5</jooq.version>
-        <postgresql.version>42.6.0</postgresql.version>
-        <testcontainers.version>1.18.1</testcontainers.version>
-        <spring-boot-admin.version>3.1.5</spring-boot-admin.version>
-        <!-- Plugins -->
-        <testcontainers-jooq-codegen-maven-plugin.version>0.0.3</testcontainers-jooq-codegen-maven-plugin.version>
-        <flyway-maven-plugin.version>9.20.1</flyway-maven-plugin.version>
-        <jooq-codegen-maven.version>${jooq.version}</jooq-codegen-maven.version>
+        <spring-boot-admin.version>3.2.3</spring-boot-admin.version>
     </properties>
 
     <dependencyManagement>
@@ -111,26 +104,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
