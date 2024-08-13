@@ -6,7 +6,7 @@
 1. Start cluster
     - `minikube start`
 2. Run apps:
-   - `skaffold dev`
+   - `skaffold dev` (No Grafana yet...)
 3. Run load-test:
    - `artillery run artillery-load-test.yml`
 
@@ -51,4 +51,5 @@ curl --location 'http://localhost:8080/order' \
 ---
 ## Useful Links
 [Spring Boot Grafana Dashboards](https://grafana.com/grafana/dashboards/?search=spring+boot)\
-[Spring Boot 3 Dashboard file for Grafana](https://grafana.com/grafana/dashboards/19004-spring-boot-statistics/)
+[Spring Boot 3 Dashboard file for Grafana](https://grafana.com/grafana/dashboards/19004-spring-boot-statistics/)\
+[Get Artillery](https://www.artillery.io/docs/get-started/get-artillery)
