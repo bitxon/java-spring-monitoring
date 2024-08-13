@@ -27,7 +27,7 @@ public class OrderController {
         LOG.info("Handling: POST /order");
 
         var identifier = order.productIdentifier();
-        var amount = priceClient.getPrice(identifier);
+        var amount = priceClient.getPrice(identifier).amount();
 
         int totalAmount = amount * order.quantity();
 
