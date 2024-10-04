@@ -23,10 +23,10 @@ manifests:
     - k8s/monitoring/namespace.yaml
     - k8s/monitoring/prometheus-rbac.yaml
     - k8s/monitoring/prometheus-deployment.yaml
-    - k8s/zipkin.yaml
-    - k8s/sba-rbac.yaml
-    - k8s/sba.yaml
+    - k8s/monitoring/zipkin.yaml
     - k8s/db.yaml
+    - k8s/sba-rbac.yaml
+    - k8s/sba-application.yaml
     - k8s/price-application.yaml
     - k8s/order-application.yaml
 portForward:
@@ -42,7 +42,7 @@ portForward:
     localPort: 8080
   - resourceName: zipkin-service
     resourceType: service
-    namespace: default
+    namespace: monitoring
     port: 9411
     localPort: 9411
   - resourceName: sba-service
