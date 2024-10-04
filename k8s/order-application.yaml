@@ -58,4 +58,4 @@ spec:
             - name: HTTP_PRICE_CLIENT_URL
               value: "http://price-service.default.svc.cluster.local:8080"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
-              value: "http://zipkin-service.default.svc.cluster.local:9411/api/v2/spans"
+              value: "http://zipkin-service.monitoring.svc.cluster.local:9411/api/v2/spans"
