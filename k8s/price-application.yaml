@@ -31,6 +31,10 @@ spec:
     metadata:
       labels:
         app: price
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/actuator/prometheus"
+        prometheus.io/port: "8081"
     spec:
       containers:
         - name: price-app

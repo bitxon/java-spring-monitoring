@@ -25,7 +25,7 @@
 
 [Open - Zipkin](http://localhost:9411)\
 [Open - Spring Admin](http://localhost:9999)\
-[Open - Prometheus](http://localhost:9090)\
+[Open - Prometheus](http://localhost:9090/targets)\
 [Open - Grafana](http://localhost:3000)
 
 
