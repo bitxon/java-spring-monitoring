@@ -8,9 +8,8 @@ metadata:
 data:
   prometheus-config-k8s.yaml: |
     global:
-      scrape_interval: 5s
-      evaluation_interval: 5s
-
+      scrape_interval: 3s
+      evaluation_interval: 3s
     scrape_configs:
       - job_name: 'kubernetes-pods'
         kubernetes_sd_configs:
@@ -28,12 +27,27 @@ data:
             regex: ([^:]+)(?::\d+)?;(\d+)
             replacement: $1:$2
             target_label: __address__
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  type: ClusterIP
+  selector:
+    app: prometheus
+  ports:
+    - name: ui
+      port: 9090
+      targetPort: 9090
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus
+  name: prometheus-deployment
   namespace: monitoring
   labels:
     app: prometheus

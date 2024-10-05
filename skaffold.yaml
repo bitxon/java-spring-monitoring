@@ -50,8 +50,8 @@ portForward:
     namespace: default
     port: 8080
     localPort: 9999
-  - resourceName: prometheus
-    resourceType: deployment
+  - resourceName: prometheus-service
+    resourceType: service
     namespace: monitoring
     port: 9090
     localPort: 9090
