@@ -4,7 +4,7 @@
 
 ### In Kubernetes (skaffold)
 1. Start cluster
-    - `minikube start`
+    - `minikube start --cpus=3 --memory=4000`
 2. Run apps:
    - `skaffold dev`
 3. Run load-test:
