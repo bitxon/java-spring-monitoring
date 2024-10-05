@@ -15,6 +15,7 @@ data:
         kubernetes_sd_configs:
           - role: pod
         relabel_configs:
+          # Scraping
           - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
             action: keep
             regex: true
@@ -27,6 +28,16 @@ data:
             regex: ([^:]+)(?::\d+)?;(\d+)
             replacement: $1:$2
             target_label: __address__
+          # Extra Labels
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: application
+            regex: ^([^-.]+).*          # Extract the first part of the pod name before the first hyphen
+            replacement: ${1}-service
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: kubernetes_pod_name
 ---
 apiVersion: v1
 kind: Service

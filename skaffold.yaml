@@ -23,6 +23,7 @@ manifests:
     - k8s/monitoring/namespace.yaml
     - k8s/monitoring/prometheus-rbac.yaml
     - k8s/monitoring/prometheus-deployment.yaml
+    - k8s/monitoring/grafana-deployment.yaml
     - k8s/monitoring/zipkin.yaml
     - k8s/db.yaml
     - k8s/sba-rbac.yaml
@@ -55,3 +56,8 @@ portForward:
     namespace: monitoring
     port: 9090
     localPort: 9090
+  - resourceName: grafana-service
+    resourceType: service
+    namespace: monitoring
+    port: 3000
+    localPort: 3000
