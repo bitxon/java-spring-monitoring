@@ -6,7 +6,7 @@
 1. Start cluster
     - `minikube start`
 2. Run apps:
-   - `skaffold dev` (No Grafana yet...)
+   - `skaffold dev`
 3. Run load-test:
    - `artillery run artillery-load-test.yml`
 
@@ -26,7 +26,7 @@
 [Open - Zipkin](http://localhost:9411)\
 [Open - Spring Admin](http://localhost:9999)\
 [Open - Prometheus](http://localhost:9090/targets)\
-[Open - Grafana](http://localhost:3000)
+[Open - Grafana](http://localhost:3000/d/d3092176-b514-4046-90e9-61554c809dec)
 
 
 ```shell
