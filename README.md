@@ -2,6 +2,12 @@
 
 ## Run
 
+### In Docker (All)
+1. Start containers
+   - `docker compose --profile all up -d --build`
+2. Run load-test:
+   - `artillery run artillery-load-test.yml`
+
 ### In Kubernetes (skaffold)
 1. Start cluster
     - `minikube start --cpus=3 --memory=4000`
@@ -10,9 +16,9 @@
 3. Run load-test:
    - `artillery run artillery-load-test.yml`
 
-### In Docker
+### In Local (Spring on Local, Infra in Docker)
 1. Start containers
-    - `docker-compose up -d`
+    - `docker compose up -d`
 2. Run apps:
     - `mvn -pl price-service -am spring-boot:run`
     - `mvn -pl order-service -am spring-boot:run`
@@ -24,7 +30,7 @@
 ## Test
 
 [Open - Zipkin](http://localhost:9411)\
-[Open - Spring Admin](http://localhost:9999)\
+[Open - Spring Admin](http://localhost:9999/wallboard)\
 [Open - Prometheus](http://localhost:9090/targets)\
 [Open - Grafana](http://localhost:3000/d/d3092176-b514-4046-90e9-61554c809dec)
 

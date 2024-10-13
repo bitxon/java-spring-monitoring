@@ -9,7 +9,6 @@
       "pluginName": "Prometheus"
     }
   ],
-  "__elements": {},
   "__requires": [
     {
       "type": "panel",
@@ -53,11 +52,9 @@
     ]
   },
   "editable": true,
-  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -888,6 +885,5 @@
   "timezone": "",
   "title": "Spring Boot 3 Throughput",
   "uid": "d3092176-b514-4046-90e9-61554c809dec",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }

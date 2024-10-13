@@ -12,7 +12,9 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 2s
     static_configs:
-      - targets: [ 'host.docker.internal:8090' ]
+      # 'price-service:8080'        - If application in Docker
+      # 'host.docker.internal:8090' - If application in Local
+      - targets: [ 'price-service:8080', 'host.docker.internal:8090' ]
         labels:
           application: 'price-service'
 
@@ -20,6 +22,8 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 2s
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      # 'price-service:8080'        - If application in Docker
+      # 'host.docker.internal:8090' - If application in Local
+      - targets: [ 'order-service:8080', 'host.docker.internal:8080' ]
         labels:
           application: 'order-service'

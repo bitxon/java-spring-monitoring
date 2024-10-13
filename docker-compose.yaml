@@ -13,7 +13,7 @@ services:
 
   zipkin:
     container_name: zipkin
-    image: openzipkin/zipkin:latest
+    image: openzipkin/zipkin:3.4
     ports:
       - "9411:9411"
 
@@ -46,3 +46,49 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     ports:
       - "3000:3000"
+
+  sba-service:
+    container_name: sba-service
+    restart: always
+    profiles: [all]
+    build:
+      context: ./spring-boot-admin
+      dockerfile: Dockerfile
+    ports:
+      - "9999:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+
+  price-service:
+    container_name: price-service
+    restart: always
+    profiles: [all]
+    build:
+      context: ./price-service
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+      SPRING_BOOT_ADMIN_CLIENT_URL: "http://sba-service:8080"
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: "http://zipkin:9411/api/v2/spans"
+
+  order-service:
+    container_name: order-service
+    restart: always
+    profiles: [all]
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/postgres"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "postgres"
+      HTTP_PRICE_CLIENT_URL: "http://price-service:8080"
+      SPRING_BOOT_ADMIN_CLIENT_URL: "http://sba-service:8080"
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: "http://zipkin:9411/api/v2/spans"
