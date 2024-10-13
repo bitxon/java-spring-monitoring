@@ -5,6 +5,7 @@ datasources:
     uid: Prometheus # Make sure you use uid in dashboard *.json files
     type: prometheus
     access: proxy
+    isDefault: true
     url: http://prometheus:9090
     jsonData:
       httpMethod: POST

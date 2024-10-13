@@ -1,7 +1,12 @@
 spring:
   profiles:
     default: local
-
+  application:
+    name: sba-service
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: false
 management:
   endpoints:
     web:
