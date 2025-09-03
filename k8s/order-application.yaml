@@ -61,5 +61,5 @@ spec:
               value: "http://zipkin-service.monitoring.svc.cluster.local:9411/api/v2/spans"
       initContainers:
         - name: wait-for-db
-          image: postgres:15.7-alpine
+          image: postgres:17.6-alpine
           command: [ 'sh', '-c', 'until pg_isready -h db-service.default.svc.cluster.local -p 5432; do echo waiting for DB; sleep 2; done;' ]
