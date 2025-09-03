@@ -2,7 +2,7 @@ version: '3.8'
 services:
   postgres:
     container_name: postgres
-    image: postgres:15.7-alpine
+    image: postgres:17.6-alpine
     restart: always
     environment:
       - POSTGRES_DB=postgres
@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: "pg_isready"
+      test: "pg_isready -U postgres"
       interval: 3s
       timeout: 5s
       retries: 10
