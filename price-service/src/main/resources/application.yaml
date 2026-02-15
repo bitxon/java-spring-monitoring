@@ -6,13 +6,18 @@ spring:
 
 management:
   tracing:
-    enabled: true
     sampling:
       probability: 1.0 # Trace everything, but please use 0.1 for Prod
     baggage:
       correlation:
-        fields: x-request-id, x-application-id
-      remote-fields: ${management.tracing.baggage.correlation.fields}
+        fields:
+          - x-request-id
+          - x-application-id
+      remote-fields:
+        - x-request-id
+        - x-application-id
+    export:
+      enabled: true
   endpoints:
     web:
       exposure:

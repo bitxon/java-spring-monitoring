@@ -7,22 +7,27 @@ spring:
   application:
     name: order-service
   flyway:
-    default-schema: postgres
+    default-schema: public
     fail-on-missing-locations: true
 
 management:
   tracing:
-    enabled: true
     sampling:
       probability: 1.0 # Trace everything, but please use 0.1 for Prod
     baggage:
       correlation:
-        fields: x-request-id, x-application-id
-      remote-fields: ${management.tracing.baggage.correlation.fields}
+        fields:
+          - x-request-id
+          - x-application-id
+      remote-fields:
+        - x-request-id
+        - x-application-id
+    export:
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"
   endpoint:
     health:
       show-details: always
@@ -32,4 +37,4 @@ management:
 
 logging:
   pattern:
-    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}, %X{x-request-id:-}, %X{x-application-id:-}]'
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}, %X{x-request-id:-}, %X{x-application-id:-}]"

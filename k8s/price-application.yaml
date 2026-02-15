@@ -49,5 +49,5 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
-            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+            - name: MANAGEMENT_TRACING_EXPORT_ZIPKIN_ENDPOINT
               value: "http://zipkin-service.monitoring.svc.cluster.local:9411/api/v2/spans"
