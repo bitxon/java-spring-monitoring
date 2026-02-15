@@ -12,9 +12,10 @@ spring:
         url: http://localhost:9999
 
 management:
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9411/api/v2/spans # Default value
+  tracing:
+    export:
+      zipkin:
+        endpoint: http://localhost:9411/api/v2/spans # Default value
 
 http:
   price-client:

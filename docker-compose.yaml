@@ -76,7 +76,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: "docker"
       SPRING_BOOT_ADMIN_CLIENT_URL: "http://sba-service:8080"
-      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: "http://zipkin:9411/api/v2/spans"
+      MANAGEMENT_TRACING_EXPORT_ZIPKIN_ENDPOINT: "http://zipkin:9411/api/v2/spans"
 
   order-service:
     container_name: order-service
@@ -97,4 +97,4 @@ services:
       SPRING_DATASOURCE_PASSWORD: "postgres"
       HTTP_PRICE_CLIENT_URL: "http://price-service:8080"
       SPRING_BOOT_ADMIN_CLIENT_URL: "http://sba-service:8080"
-      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: "http://zipkin:9411/api/v2/spans"
+      MANAGEMENT_TRACING_EXPORT_ZIPKIN_ENDPOINT: "http://zipkin:9411/api/v2/spans"
