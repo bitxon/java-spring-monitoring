@@ -9,6 +9,7 @@ config:
       duration: 20
       rampTo: 100
   plugins:
+    # https://www.artillery.io/docs/reference/extensions/fake-data
     fake-data: {}
 scenarios:
   - name: post_order
@@ -17,8 +18,8 @@ scenarios:
           url: "/order"
           json:
             productIdentifier: "iphone"
-            productName: "N/A"
+            productName: "{{ $commerceProductName() }}"
             quantity: 3
           headers:
             x-application-id: "Perf"
-            x-request-id: "{{ $randSequence() }}"
+            x-request-id: "{{ $stringNanoid() }}"
