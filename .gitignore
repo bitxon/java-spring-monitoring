@@ -43,5 +43,13 @@ out/
 ### VS Code ###
 .vscode/
 
+### Zed ###
+.zed/
+
 ### Mac OS ###
 .DS_Store
+
+### AI - Tools ###
+CLAUDE.local.md
+CLAUDE.md
+.claude/

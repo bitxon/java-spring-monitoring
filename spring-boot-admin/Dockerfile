@@ -1,4 +1,4 @@
-FROM maven:3.9.11-eclipse-temurin-21-alpine AS build
+FROM maven:3.9.11-eclipse-temurin-25-alpine AS build
 WORKDIR /app
 COPY pom.xml .
 # use BF collector for parallel POM downloads
@@ -6,7 +6,7 @@ RUN mvn -B -Daether.dependencyCollector.impl=bf dependency:go-offline
 COPY src/ /app/src/
 RUN mvn -B clean package -DskipTests
 
-FROM azul/zulu-openjdk-alpine:21-jre
+FROM eclipse-temurin:25-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar /app/app.jar
 ENTRYPOINT ["java","-jar","app.jar"]
